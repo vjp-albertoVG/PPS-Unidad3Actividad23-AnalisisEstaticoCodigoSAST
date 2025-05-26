@@ -43,27 +43,26 @@ source semgrep_env/bin/activate
 ```
 Vemos como ya no aparece nuestro usuario en el `prompt` sino el entorno virtual activado `semgrep_env`
 
-![](images/ad1.png)
-
-
 3. Instalar Semgrep dentro del entorno virtual que hemos creado:
  
 ```bash
 pip install semgrep
 ```
+
+![](images/Imagen1.png)
+
 > **Si tuvieras algún problema** con la instalación con `pip` puedes probar con `snap`:
 
 ```bash
 sudo apt install snap
 snap install semgrep
 ```
-
-
 4. Comprobar instalación:
 
 ```bash
 semgrep --version
 ```
+![](images/Imagen2.png)
 
 5. Para salir del entorno:
 ```bash
@@ -97,6 +96,9 @@ Características Principales de NodeGoat
 git clone https://github.com/OWASP/NodeGoat.git
 cd NodeGoat
 ```
+![](images/Imagen3.png)
+
+![](images/Imagen4.png)
 
 ---
 
@@ -118,18 +120,20 @@ Activiamos el entorno virtual y ejecutamos:
 source semgrep_env/bin/activate
 semgrep --config=auto .
 ```
-![](images/ad2.png)
+![](images/Imagen5.png)
+
+![](images/Imagen6.png)
 
 	`--config=auto`  → Utiliza reglas automáticas recomendadas para detectar vulnerabilidades comunes.
 	`.` → Escanea todo el código dentro del directorio actual.
 
-![](images/ad7.png)
+![](images/Imagen7.png)
 
 
 Esperamos a que se muestren los resultados y vemos cómo nos aparecen 109 problemas:
 
 
-![](images/ad3.png)
+![](images/Imagen8.png)
 
 ### Resultado:
 
@@ -139,15 +143,16 @@ Después de ejecutar el comando, Semgrep mostrará una lista de posibles vulnera
 - El tipo de riesgo detectado (XSS, Inyección NoSQL, CSRF, etc.).
 - Recomendaciones para corregir el problema. También nos indica la página web donde podemos encontrar la explicación de la regla
 
-![](images/ad4.png)
+![](images/Imagen9.png)
 
 Si pulsamos el enlace de la regla, nos llevará a la página de <https://sengreo.dev>, donde podemos encontrar información del problema y referencias a él.
 
-![](images/ad5.png)
+![](images/Imagen10.png)
 
 En la siguiente captura vemos más detalles:
 
-![](images/ad6.png)
+![](images/Imagen11.png)
+
 ---
 
 
@@ -164,7 +169,9 @@ Esto buscará vulnerabilidades basadas en las 10 amenazas más críticas de OWAS
 
 En esta ocasión vemos que sólo hemos encontrado 44 problemas de esa categoría.
 
-![](images/ad7.png)
+![](images/Imagen12.png)
+
+![](images/Imagen13.png)
 
 ---
 
@@ -279,7 +286,7 @@ Este repositorio es una prueba de integración de **Semgrep**, una herramienta d
 
 1. Crea un nuevo repositorio en GitHub (por ejemplo: `semgrep-prueba`).
 
-![](images/ad10.png)
+![](images/Imagen14.png)
 
 
 2. Clónalo en local:
@@ -287,11 +294,15 @@ Este repositorio es una prueba de integración de **Semgrep**, una herramienta d
     git clone https://github.com/tu-usuario/semgrep-prueba.git
     cd semgrep-prueba
     ```
+![](images/Imagen15.png)
+    
 3.  📁 Crea la estructura de carpetas:
     ```bash
     mkdir -p .github/workflows
     touch main.py README.md .github/workflows/semgrep.yml
     ```
+![](images/Imagen16.png)
+    
 **Estructura del proyecto**
 
 ```
@@ -318,6 +329,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+![](images/Imagen17.png)
 
 ---
 4. ⚙️  Añade el workflow 
@@ -365,7 +377,7 @@ jobs:
           name: semgrep-report
           path: semgrep-results.json
 ```
-
+![](images/Imagen18.png)
 
 - Al hacer `push` sobre ramas `main` y `develop` se desencadena la ejecuciónn que indicamos.
 - Pasos que hacemos:
@@ -383,7 +395,7 @@ jobs:
 
 El análisis estático de Semgrep debería ejecutarse automáticamente en cada `push` a `main` o `develop`, o en cada `pull_request`, mostrando los resultados en la pestaña de Actions y guardando un reporte JSON como artefacto.
 
-![](images/ad11.png)
+![](images/Imagen19.png)
 
 ---
 
@@ -391,17 +403,17 @@ El análisis estático de Semgrep debería ejecutarse automáticamente en cada `
 
 Alli encontraremos el resultado de la ejecución de `semgrep`.
 
-![](images/ad12.png)
+![](images/Imagen20.png)
 
 Y podemos descargar el archivo .json con información sobre el resultado.
 
-![](images/ad13.png)
+![](images/Imagen21.png)
 
 Abajo podemos ver la información sobre el problema introducido por el uso de `eval()`
 
-![](images/ad14.png)
+![](images/Imagen22.png)
 
-
+![](images/Imagen23.png)
 
 ## Crear reglas personalizadas
 
@@ -420,6 +432,7 @@ rules:
       - python
 
 ```
+![](images/Imagen24.png)
 
 Explicación:
 **pattern**: **eval(...)** → Detecta cualquier uso de `eval()`.
@@ -440,7 +453,7 @@ semgrep --config=files/custom-rules.yaml .
 ```
 Como vemos nos aparece el aviso indicado en la regla.
 
-![](images/ad15.png)
+![](images/Imagen25.png)
 
 
 ---
@@ -464,12 +477,13 @@ por
 
 Al hacer un `git push` podemos ver como se ejecuta automáticament el `workflow`
 
+![](images/Imagen26.png)
 
-![](images/ad16.png)
+![](images/Imagen27.png)
 
 Si accedemos a los detalles y descargamos el archivo `semgrep-report` con el resultado en formato `JSON`, podemos ver el resultado de la ejecución:
 
-![](images/ad17.png)
+![](images/Imagen28.png)
 
 
 
